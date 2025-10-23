@@ -1,0 +1,1 @@
+Čia yra demonstracinis bibliotekos projektas, sukurtas su Django karkasu.
