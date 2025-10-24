@@ -6,3 +6,10 @@ class Author(models.Model):
 
     def __str__(self):
         return f"Autorius {self.first_name} {self.last_name}"
+
+
+class Genre(models.Model):
+    name = models.CharField(verbose_name="Pavadinimas")
+
+    def __str__(self):
+        return self.name
