@@ -8,12 +8,19 @@ class Author(models.Model):
     def __str__(self):
         return f"Autorius {self.first_name} {self.last_name}"
 
+    class Meta:
+        verbose_name = "Autorius"
+        verbose_name_plural = "Autoriai"
 
 class Genre(models.Model):
     name = models.CharField(verbose_name="Pavadinimas")
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Žanras"
+        verbose_name_plural = "Žanrai"
 
 class Book(models.Model):
     title = models.CharField(verbose_name="Pavadinimas")
@@ -24,6 +31,10 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = "Knyga"
+        verbose_name_plural = "Knygos"
 
 class BookInstance(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4)
@@ -41,3 +52,7 @@ class BookInstance(models.Model):
 
     def __str__(self):
         return f"{self.book.title} ({self.uuid})"
+
+    class Meta:
+        verbose_name = "Kopija"
+        verbose_name_plural = "Kopijos"
