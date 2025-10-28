@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mano supersvetainė</title>
+    <title>Mūsų biblioteka</title>
 </head>
 <body>
-<h1>Mano supersvetainė</h1>
-<p>Sveiki atvykę į mano svetainę, kurioje mokysimės, kaip veikia Django.</p>
-
+<h1>Mūsų biblioteka</h1>
+<p>Sveiki atvykę į mūsų biblioteką, kurioje mokysimės, kaip veikia Django.</p>
+<h1>Šiuo metu mes turime:</h1>
+<ul>
+    <li>Knygų: {{ num_books }}</li>
+    <li>Autorių: {{ num_authors }}</li>
+    <li>Knygų kopijų: {{ num_instances }}</li>
+    <li>Laisvų knygų: {{ num_instances_available }}</li>
+</ul>
 </body>
 </html>
