@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Mūsų biblioteka</title>
-</head>
-<body>
-<h1>Mūsų biblioteka</h1>
-<p>Sveiki atvykę į mūsų biblioteką, kurioje mokysimės, kaip veikia Django.</p>
+{% extends "base.html" %}
+
+{% block title %}PRADŽIA{% endblock %}
+
+{% block content %}
 <h1>Šiuo metu mes turime:</h1>
 <ul>
     <li>Knygų: {{ num_books }}</li>
@@ -14,5 +10,5 @@
     <li>Knygų kopijų: {{ num_instances }}</li>
     <li>Laisvų knygų: {{ num_instances_available }}</li>
 </ul>
-</body>
-</html>
+{% endblock %}
+
