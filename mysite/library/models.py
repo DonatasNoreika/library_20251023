@@ -11,7 +11,7 @@ class Author(models.Model):
     display_books.short_description = "Knygos"
 
     def __str__(self):
-        return f"Autorius {self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name}"
 
     class Meta:
         verbose_name = "Autorius"

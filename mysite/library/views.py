@@ -11,3 +11,10 @@ def index(request):
         'num_instances_available': BookInstance.objects.filter(status='a').count(),
     }
     return render(request, template_name="index.html", context=my_context)
+
+
+def authors(request):
+    context = {
+        'authors': Author.objects.all(),
+    }
+    return render(request, template_name="authors.html", context=context)
