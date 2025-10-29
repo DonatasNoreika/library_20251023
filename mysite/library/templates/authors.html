@@ -3,6 +3,7 @@
 {% block title %}Autoriai{% endblock %}
 
 {% block content %}
+<h1>Autoriai:</h1>
 {% for author in authors %}
 <p><a href="{% url 'author' author.pk %}">{{ author.first_name }} {{ author.last_name }}</a></p>
 <hr>
