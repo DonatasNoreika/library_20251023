@@ -10,7 +10,7 @@
 <hr>
 <h4>Turimos knygos:</h4>
 {% for book in author.books.all %}
-<p>{{ book.title }}</p>
+<p><a href="{% url 'book' book.pk %}">{{ book.title }}</a></p>
 {% empty %}
 <p>Neturime šio autoriaus knygų</p>
 {% endfor %}

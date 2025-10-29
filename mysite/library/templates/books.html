@@ -5,7 +5,9 @@
 {% block content %}
 <h1>Knygos:</h1>
 {% for book in books %}
-<p>{{ book.title }} ({{ book.author }})</p>
+<p><a href="{{ book.pk }}">{{ book.title }}</a> ({{ book.author }})</p>
 <hr>
+{% empty %}
+<p>Nėra knygų</p>
 {% endfor %}
 {% endblock %}
