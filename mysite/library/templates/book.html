@@ -3,6 +3,12 @@
 {% block title %}Knyga{% endblock %}
 
 {% block content %}
+
+{% load static %}
+{% if book.cover %}
+<img src="{{ book.cover.url }}" class="mb-3" style="max-width: 400px">
+{% endif %}
+
 <p>Pavadinimas: <strong>{{ book.title }}</strong></p>
 <p>Autorius: <strong>{{ book.author }}</strong></p>
 <p>ISBN: <strong>{{ book.isbn }}</strong></p>
