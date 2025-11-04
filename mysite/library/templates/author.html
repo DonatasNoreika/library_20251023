@@ -6,7 +6,7 @@
 
 <p>Vardas: <strong>{{ author.first_name }}</strong></p>
 <p>Pavardė: <strong>{{ author.last_name }}</strong></p>
-<p>{{ author.description }}</p>
+<p>{{ author.description | safe }}</p>
 <hr>
 <h4>Turimos knygos:</h4>
 {% for book in author.books.all %}
