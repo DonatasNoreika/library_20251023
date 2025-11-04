@@ -38,6 +38,9 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'mybooks' %}">Mano Knygos</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link">
                     <i class="bi bi-person-circle"></i>
                     {{ user.username }}

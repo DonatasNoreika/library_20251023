@@ -48,6 +48,15 @@ class BookDetailView(generic.DetailView):
     context_object_name = "book"
 
 
+class MyBookInstances(generic.ListView):
+    model = BookInstance
+    template_name = 'my_books.html'
+    context_object_name = 'instances'
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(reader=self.request.user)
+
+
 def search(request):
     query = request.GET.get('query')
     book_search_results = Book.objects.filter(Q(title__icontains=query) |
