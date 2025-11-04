@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from .models import Book, BookInstance, Author
 from django.views import generic
@@ -48,7 +49,7 @@ class BookDetailView(generic.DetailView):
     context_object_name = "book"
 
 
-class MyBookInstances(generic.ListView):
+class MyBookInstances(LoginRequiredMixin, generic.ListView):
     model = BookInstance
     template_name = 'my_books.html'
     context_object_name = 'instances'
