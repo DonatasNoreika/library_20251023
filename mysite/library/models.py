@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from django.contrib.auth.models import User
 
 class Author(models.Model):
     first_name = models.CharField(verbose_name="Vardas", max_length=30)
@@ -64,6 +65,7 @@ class BookInstance(models.Model):
                              on_delete=models.CASCADE,
                              related_name="instances")
     due_back = models.DateField(verbose_name="Grąžinimo data", null=True, blank=True)
+    reader = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=True)
 
     LOAN_STATUS = (
         ('d', "Administered"),
