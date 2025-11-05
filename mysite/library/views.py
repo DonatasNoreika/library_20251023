@@ -4,6 +4,8 @@ from .models import Book, BookInstance, Author
 from django.views import generic
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
 
 def index(request):
     num_visits = request.session.get('num_visits', 1)
@@ -74,3 +76,9 @@ def search(request):
         'query': query,
     }
     return render(request, template_name='search.html', context=context)
+
+
+class SignUp(generic.CreateView):
+    form_class = UserCreationForm
+    template_name = "signup.html"
+    success_url = reverse_lazy('login')
