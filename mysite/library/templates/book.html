@@ -29,4 +29,13 @@
 {% empty %}
 <p>Neturime šios knygos kopijų</p>
 {% endfor %}
+
+<hr>
+<h4>Atsiliepimai:</h4>
+{% for review in book.reviews.all %}
+<p><strong>{{ review.reviewer }}</strong>, <em>{{ review.date_created }}</em></p>
+<p class="mb-4">{{ review.content }}</p>
+{% empty %}
+<p>Nėra atsiliepimų</p>
+{% endfor %}
 {% endblock %}
