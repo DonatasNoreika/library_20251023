@@ -9,5 +9,5 @@ urlpatterns = [
     path("books/<int:pk>/", views.BookDetailView.as_view(), name="book"),
     path("search/", views.search, name="search"),
     path("mybooks/", views.MyBookInstances.as_view(), name="mybooks"),
-    path("sighup/", views.SignUp.as_view(), name="signup"),
+    path("signup/", views.SignUp.as_view(), name="signup"),
 ]

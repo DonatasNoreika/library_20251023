@@ -5,8 +5,9 @@
 {% block content %}
 
 <form method="post" action="{% url 'signup' %}">
+    {% load crispy_forms_tags %}
     {% csrf_token %}
-    {{ form }}
+    {{ form | crispy }}
     <button type="submit" class="btn btn-primary">Registruotis</button>
 </form>
 {% endblock %}
