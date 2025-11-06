@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Author, Genre, Book, BookInstance, BookReview
+from .models import Author, Genre, Book, BookInstance, BookReview, CustomUser
+from django.contrib.auth.admin import UserAdmin
 
 class BookInstanceInLine(admin.TabularInline):
     model = BookInstance
@@ -29,8 +30,13 @@ class AuthorAdmin(admin.ModelAdmin):
 class BookReviewAdmin(admin.ModelAdmin):
     list_display = ['book', 'reviewer', 'date_created']
 
+class CustomUserAdmin(admin.ModelAdmin):
+    fieldsets = UserAdmin.fieldsets + (
+        ('Additional Info', {'fields': ('photo',)}),
+    )
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Genre)
 admin.site.register(Book, BookAdmin)
 admin.site.register(BookInstance, BookInstanceAdmin)
 admin.site.register(BookReview, BookReviewAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
