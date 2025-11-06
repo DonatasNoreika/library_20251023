@@ -38,7 +38,7 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link">
+                    <a class="nav-link" href="{% url 'profile' %}">
                     <i class="bi bi-person-circle"></i>
                     {{ user.username }}
                     </a>
@@ -51,16 +51,14 @@
                         {% csrf_token %}
                         <button class="nav-link" type="submit">Atsijungti</button>
                     </form>
-<!--                    <a class="nav-link" href="{% url 'logout' %}">Atsijungti</a>-->
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Prisijungti</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{% url 'signup' %}">Registruotis</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Prisijungti</a>
+                </li>
                 {% endif %}
             </ul>
             <form class="d-flex" method="get" action="{% url 'search' %}">
