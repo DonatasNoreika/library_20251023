@@ -4,13 +4,16 @@
 
 {% block content %}
 <div class="col-md">
+    {% if user.photo %}
+    <img src="{{ user.photo.url }}" class="mb-4 rounded-circle" style="width: 300px">
+    {% endif %}
     <p><b>Vartotojo vardas: </b>{{ user.username }}</p>
     <p><b>Vardas: </b>{{ user.first_name }}</p>
     <p><b>Pavardė: </b>{{ user.last_name }}</p>
     <p><b>El. pašto adresas: </b>{{ user.email }}</p>
     <h2 class="mb-4 text-center">Profilio atnaujinimas</h2>
     <hr>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% load crispy_forms_tags %}
         {{ form | crispy }}

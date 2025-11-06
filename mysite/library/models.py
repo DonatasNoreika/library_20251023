@@ -1,6 +1,6 @@
 from django.db import models
 import uuid
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.utils import timezone
 from tinymce.models import HTMLField
 
@@ -67,7 +67,7 @@ class BookInstance(models.Model):
                              on_delete=models.CASCADE,
                              related_name="instances")
     due_back = models.DateField(verbose_name="Grąžinimo data", null=True, blank=True)
-    reader = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=True)
+    reader = models.ForeignKey(to="library.CustomUser", on_delete=models.SET_NULL, null=True, blank=True)
 
     LOAN_STATUS = (
         ('d', "Administered"),
@@ -96,7 +96,7 @@ class BookReview(models.Model):
                              null=True,
                              blank=True,
                              related_name="reviews")
-    reviewer = models.ForeignKey(to=User, verbose_name="Autorius", on_delete=models.SET_NULL, null=True, blank=True)
+    reviewer = models.ForeignKey(to="library.CustomUser", verbose_name="Autorius", on_delete=models.SET_NULL, null=True, blank=True)
     date_created = models.DateTimeField(verbose_name="Data", auto_now_add=True)
     content = models.TextField(verbose_name="Tekstas")
 
@@ -104,3 +104,7 @@ class BookReview(models.Model):
         verbose_name = "Atsiliepimas"
         verbose_name_plural = "Atsiliepimai"
         ordering = ['-pk']
+
+
+class CustomUser(AbstractUser):
+    photo = models.ImageField(upload_to="profile_pics", null=True, blank=True)
