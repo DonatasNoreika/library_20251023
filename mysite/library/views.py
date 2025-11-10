@@ -6,7 +6,10 @@ from django.views import generic
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.urls import reverse_lazy
-from .forms import BookReviewForm, CustomUserUpdateForm, CustomUserCreateForm
+from .forms import (BookReviewForm,
+                    CustomUserUpdateForm,
+                    CustomUserCreateForm,
+                    BookInstanceUpdateForm)
 from django.contrib.auth.models import User
 
 def index(request):
@@ -149,7 +152,8 @@ class BookInstanceCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.Cr
 class BookInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = BookInstance
     template_name = "instance_form.html"
-    fields = ['book', 'reader', 'due_back', 'status']
+    # fields = ['book', 'reader', 'due_back', 'status']
+    form_class = BookInstanceUpdateForm
     # success_url = reverse_lazy('instances')
 
     def get_success_url(self):
