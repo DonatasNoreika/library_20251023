@@ -15,5 +15,7 @@
     <span class="{% if instance.is_overdue %}text-danger{% endif %}">{{ instance.due_back }}</span>
 </p>
 <p><b>Būsena: </b>{{ instance.get_status_display }}</p>
-
+<div>
+    <a class="btn btn-warning btn-sm my-1" href="{% url 'instances_update' instance.pk %}">Redaguoti</a>
+</div>
 {% endblock %}
