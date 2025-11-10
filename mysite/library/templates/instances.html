@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Knyga{% endblock %}
+{% block title %}Adminstravimas{% endblock %}
 
 {% block content %}
 
 {% for instance in instances %}
-<p>
-    {{ instance.book }} - {{ instance.uuid }}
-</p>
+<a href="{% url 'instance' instance.pk %}">
+    <p>
+        {{ instance.book }} - {{ instance.uuid }}
+    </p>
+</a>
 {% endfor %}
 {% endblock %}
