@@ -17,5 +17,6 @@
 <p><b>Būsena: </b>{{ instance.get_status_display }}</p>
 <div>
     <a class="btn btn-warning btn-sm my-1" href="{% url 'instances_update' instance.pk %}">Redaguoti</a>
+    <a class="btn btn-danger btn-sm my-1" href="{% url 'instances_delete' instance.pk %}">Ištrinti</a>
 </div>
 {% endblock %}
