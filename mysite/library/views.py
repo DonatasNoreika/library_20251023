@@ -121,6 +121,7 @@ class BookInstanceListView(LoginRequiredMixin, UserPassesTestMixin, generic.List
     model = BookInstance
     context_object_name = "instances"
     template_name = 'instances.html'
+    ordering = ['-pk']
 
     def test_func(self):
         return self.request.user.is_staff
@@ -134,3 +135,12 @@ class BookInstanceDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.De
     def test_func(self):
         return self.request.user.is_staff
 
+
+class BookInstanceCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
+    model = BookInstance
+    template_name = "instance_form.html"
+    fields = ['book', 'status']
+    success_url = reverse_lazy('instances')
+
+    def test_func(self):
+        return self.request.user.is_staff
