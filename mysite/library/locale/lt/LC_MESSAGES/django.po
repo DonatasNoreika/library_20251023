@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-11 10:52+0200\n"
-"PO-Revision-Date: 2025-11-11 10:54+0200\n"
+"POT-Creation-Date: 2025-11-11 11:00+0200\n"
+"PO-Revision-Date: 2025-11-11 11:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt\n"
@@ -32,7 +32,7 @@ msgstr "Pavardė"
 msgid "Description"
 msgstr "Aprašymas"
 
-#: .\models.py:18 .\models.py:66
+#: .\models.py:18 .\models.py:66 .\templates\base.html:37
 msgid "Books"
 msgstr "Knygos"
 
@@ -40,7 +40,7 @@ msgstr "Knygos"
 msgid "Author"
 msgstr "Autorius"
 
-#: .\models.py:25
+#: .\models.py:25 .\templates\base.html:34
 msgid "Authors"
 msgstr "Autoriai"
 
@@ -136,9 +136,45 @@ msgstr "Knygos komentarai"
 msgid "Photo"
 msgstr "Nuotrauka"
 
-#: .\templates\index.html:3
+#: .\templates\base.html:18
+msgid "Local library"
+msgstr "Vietinė biblioteka"
+
+#: .\templates\base.html:20
+msgid "Welcome to Local Library"
+msgstr "Sveiki atvykę į vietinę biblioteką"
+
+#: .\templates\base.html:31 .\templates\index.html:3
 msgid "HOME"
 msgstr "PRADŽIA"
+
+#: .\templates\base.html:47
+msgid "My Books"
+msgstr "Mano Knygos"
+
+#: .\templates\base.html:51
+msgid "Administration"
+msgstr "Administravimas"
+
+#: .\templates\base.html:57
+msgid "Logout"
+msgstr "Atsijungti"
+
+#: .\templates\base.html:62
+msgid "Register"
+msgstr "Registruotis"
+
+#: .\templates\base.html:65
+msgid "Login"
+msgstr "Prisijungti"
+
+#: .\templates\base.html:88
+msgid "Search"
+msgstr "Ieškoti"
+
+#: .\templates\base.html:101
+msgid " Local Library"
+msgstr "Vietinė biblioteka"
 
 #: .\templates\index.html:6
 msgid "Today we have:"

@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-
+{% load i18n %}
 <div class="p-5 bg-primary text-white text-center">
     <h1>
         <i class="bi bi-book-half"></i>
-        Mūsų biblioteka
+        {% trans "Local library" %}
     </h1>
-    <p>Pasiimkite paskaityti knygų!</p>
+    <p>{% trans "Welcome to Local Library" %}</p>
 </div>
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -28,13 +28,13 @@
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}">PRADŽIA</a>
+                    <a class="nav-link" href="{% url 'index' %}">{% trans "HOME" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'authors' %}">Autoriai</a>
+                    <a class="nav-link" href="{% url 'authors' %}">{% trans "Authors" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'books' %}">Knygos</a>
+                    <a class="nav-link" href="{% url 'books' %}">{% trans "Books" %}</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
@@ -44,25 +44,25 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'mybooks' %}">Mano Knygos</a>
+                    <a class="nav-link" href="{% url 'mybooks' %}">{% trans "My Books" %}</a>
                 </li>
                 {% if user.is_staff %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'instances' %}">Administravimas</a>
+                    <a class="nav-link" href="{% url 'instances' %}">{% trans "Administration" %}</a>
                 </li>
                 {% endif %}
                 <li class="nav-item">
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
-                        <button class="nav-link" type="submit">Atsijungti</button>
+                        <button class="nav-link" type="submit">{% trans "Logout" %}</button>
                     </form>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signup' %}">Registruotis</a>
+                    <a class="nav-link" href="{% url 'signup' %}">{% trans "Register" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Prisijungti</a>
+                    <a class="nav-link" href="{% url 'login' %}">{% trans "Login" %}</a>
                 </li>
                 {% endif %}
                 <li class="nav-item">
@@ -85,7 +85,7 @@
                 </li>
             </ul>
             <form class="d-flex" method="get" action="{% url 'search' %}">
-                <input class="form-control me-2" type="text" name="query" placeholder="Search">
+                <input class="form-control me-2" type="text" name="query" placeholder="{% trans 'Search' %}">
             </form>
         </div>
     </div>
@@ -98,7 +98,7 @@
 </div>
 
 <div class="mt-5 p-4 bg-dark text-white text-center">
-    <p>© Mūsų biblioteka</p>
+    <p>© {% trans " Local Library" %}</p>
 </div>
 
 </body>
