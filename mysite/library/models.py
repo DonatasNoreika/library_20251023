@@ -4,48 +4,50 @@ from django.contrib.auth.models import User, AbstractUser
 from django.utils import timezone
 from tinymce.models import HTMLField
 from PIL import Image
+from django.utils.translation import gettext_lazy as _
+
 
 class Author(models.Model):
-    first_name = models.CharField(verbose_name="Vardas", max_length=30)
-    last_name = models.CharField(verbose_name="Pavardė", max_length=30)
-    description = HTMLField(verbose_name="Aprašymas", null=True, blank=True)
+    first_name = models.CharField(verbose_name=_("First Name"), max_length=30)
+    last_name = models.CharField(verbose_name=_("Last Name"), max_length=30)
+    description = HTMLField(verbose_name=_("Description"), null=True, blank=True)
 
     def display_books(self):
         return ", ".join(book.title for book in self.books.all())
 
-    display_books.short_description = "Knygos"
+    display_books.short_description = _("Books")
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
     class Meta:
-        verbose_name = "Autorius"
-        verbose_name_plural = "Autoriai"
+        verbose_name = _("Author")
+        verbose_name_plural = _("Authors")
 
 class Genre(models.Model):
-    name = models.CharField(verbose_name="Pavadinimas")
+    name = models.CharField(verbose_name=_("Name"))
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name = "Žanras"
-        verbose_name_plural = "Žanrai"
+        verbose_name = _("Genre")
+        verbose_name_plural = _("Genres")
 
 class Book(models.Model):
-    title = models.CharField(verbose_name="Pavadinimas")
-    summary = models.TextField(verbose_name="Aprašymas")
+    title = models.CharField(verbose_name=_("Title"))
+    summary = models.TextField(verbose_name=_("Summary"))
     isbn = models.CharField(verbose_name="ISBN")
 
     author = models.ForeignKey(to="Author",
-                               verbose_name="Autorius",
+                               verbose_name=_("Author"),
                                on_delete=models.SET_NULL,
                                null=True,
                                blank=True,
                                related_name="books")
 
-    genre = models.ManyToManyField(to="Genre", verbose_name="Žanras")
-    cover = models.ImageField(verbose_name="Viršelis", upload_to="covers", null=True, blank=True)
+    genre = models.ManyToManyField(to="Genre", verbose_name=_("Genre"))
+    cover = models.ImageField(verbose_name=_("Cover"), upload_to="covers", null=True, blank=True)
 
     def display_genre(self):
         genres = self.genre.all()
@@ -54,61 +56,65 @@ class Book(models.Model):
             result += genre.name + ", "
         return result
 
+    display_genre.short_description = _("Genres")
+
     def __str__(self):
         return self.title
 
     class Meta:
-        verbose_name = "Knyga"
-        verbose_name_plural = "Knygos"
+        verbose_name = _("Book")
+        verbose_name_plural = _("Books")
 
 class BookInstance(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4)
     book = models.ForeignKey(to="Book",
-                             verbose_name="Knyga",
+                             verbose_name=_("Book"),
                              on_delete=models.CASCADE,
                              related_name="instances")
-    due_back = models.DateField(verbose_name="Grąžinimo data", null=True, blank=True)
-    reader = models.ForeignKey(to="library.CustomUser", on_delete=models.SET_NULL, null=True, blank=True)
+    due_back = models.DateField(verbose_name=_("Due Back"), null=True, blank=True)
+    reader = models.ForeignKey(to="library.CustomUser", verbose_name=_("Reader"), on_delete=models.SET_NULL, null=True, blank=True)
 
     LOAN_STATUS = (
-        ('d', "Administered"),
-        ('t', 'Taken'),
-        ('a', 'Available'),
-        ('r', 'Reserved'),
+        ('d', _("Administered")),
+        ('t', _('Taken')),
+        ('a', _('Available')),
+        ('r', _('Reserved')),
     )
 
-    status = models.CharField(verbose_name="Būsena", max_length=1, choices=LOAN_STATUS, default="d", blank=True)
+    status = models.CharField(verbose_name=_("Status"), max_length=1, choices=LOAN_STATUS, default="d", blank=True)
 
     def is_overdue(self):
         return self.due_back and timezone.now().date() > self.due_back
+
+    is_overdue.short_description = _("Is overdue")
 
     def __str__(self):
         return f"{self.book.title} ({self.uuid})"
 
     class Meta:
-        verbose_name = "Kopija"
-        verbose_name_plural = "Kopijos"
+        verbose_name = _("Instance")
+        verbose_name_plural = _("Instances")
 
 
 class BookReview(models.Model):
     book = models.ForeignKey(to="Book",
-                             verbose_name="Knyga",
+                             verbose_name=_("Book"),
                              on_delete=models.SET_NULL,
                              null=True,
                              blank=True,
                              related_name="reviews")
-    reviewer = models.ForeignKey(to="library.CustomUser", verbose_name="Autorius", on_delete=models.SET_NULL, null=True, blank=True)
-    date_created = models.DateTimeField(verbose_name="Data", auto_now_add=True)
-    content = models.TextField(verbose_name="Tekstas")
+    reviewer = models.ForeignKey(to="library.CustomUser", verbose_name=_("Reviewer"), on_delete=models.SET_NULL, null=True, blank=True)
+    date_created = models.DateTimeField(verbose_name=_("Date Created"), auto_now_add=True)
+    content = models.TextField(verbose_name=_("Content"))
 
     class Meta:
-        verbose_name = "Atsiliepimas"
-        verbose_name_plural = "Atsiliepimai"
+        verbose_name = _("Book Review")
+        verbose_name_plural = _("Book Reviews")
         ordering = ['-pk']
 
 
 class CustomUser(AbstractUser):
-    photo = models.ImageField(upload_to="profile_pics", null=True, blank=True)
+    photo = models.ImageField(upload_to="profile_pics", verbose_name=_("Photo"), null=True, blank=True)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
