@@ -1,15 +1,15 @@
 {% extends "base.html" %}
-
-{% block title %}PRADŽIA{% endblock %}
+{% load i18n %}
+{% block title %}{% trans 'HOME' %}{% endblock %}
 
 {% block content %}
-<h1>Šiuo metu mes turime:</h1>
+<h1>{% trans 'Today we have:' %}</h1>
 <ul>
-    <li>Knygų: {{ num_books }}</li>
-    <li>Autorių: {{ num_authors }}</li>
-    <li>Knygų kopijų: {{ num_instances }}</li>
-    <li>Laisvų knygų: {{ num_instances_available }}</li>
+    <li>{% trans 'Books: ' %}{{ num_books }}</li>
+    <li>{% trans 'Authors: ' %}{{ num_authors }}</li>
+    <li>{% trans 'Book Instances: ' %} {{ num_instances }}</li>
+    <li>{% trans 'Now Available: ' %}{{ num_instances_available }}</li>
 </ul>
-<p>Čia jūs lankotes {{ num_visits }}-ą kartą.</p>
+{% blocktrans %}<p>Čia jūs lankotes {{ num_visits }}-ą kartą.</p>{% endblocktrans %}
 {% endblock %}
 

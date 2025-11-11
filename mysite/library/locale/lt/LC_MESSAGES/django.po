@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-11 10:31+0200\n"
-"PO-Revision-Date: 2025-11-11 10:33+0200\n"
+"POT-Creation-Date: 2025-11-11 10:52+0200\n"
+"PO-Revision-Date: 2025-11-11 10:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt\n"
@@ -135,3 +135,32 @@ msgstr "Knygos komentarai"
 #: .\models.py:117
 msgid "Photo"
 msgstr "Nuotrauka"
+
+#: .\templates\index.html:3
+msgid "HOME"
+msgstr "PRADŽIA"
+
+#: .\templates\index.html:6
+msgid "Today we have:"
+msgstr "Šiandien turime:"
+
+#: .\templates\index.html:8
+msgid "Books: "
+msgstr "Knygos: "
+
+#: .\templates\index.html:9
+msgid "Authors: "
+msgstr "Autoriai: "
+
+#: .\templates\index.html:10
+msgid "Book Instances: "
+msgstr "Knygų egzemplioriai: "
+
+#: .\templates\index.html:11
+msgid "Now Available: "
+msgstr "Prieinama: "
+
+#: .\templates\index.html:13
+#, python-format
+msgid "<p>Čia jūs lankotes %(num_visits)s-ą kartą.</p>"
+msgstr "<p>Your visits: %(num_visits)s</p>"
